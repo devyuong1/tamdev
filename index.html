@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            
+        }
+        .container {
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .caithao {
+            position: absolute;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 600px;
+        }
+        .caidia {
+            position: absolute;
+            display: block;
+            width: 90%;
+            top: 120px;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            z-index: 100;
+        }
+        .fadein {
+            animation: fadein 2s forwards;
+        }
+        .fadeout {
+            animation:  fadeout 2s  forwards;
+        }
+        @keyframes fadeout {
+            0% {
+                transform: translateY(-70%);
+            }
+            100% {
+                top: 120px;
+            }
+        }
+        @keyframes fadein{
+            0% {
+                top: 120px;
+            }
+            100% {
+                transform: translateY(-70%);
+            }
+        }
+        .kq {
+            position: absolute;
+            transform: translateX(-40%);
+            top: 250px;
+            display: flex;
+            overflow: hidden;
+            flex-wrap: wrap;
+        }
+        .kq img {
+            width: 80px;
+        }
+        .kq img:last-child {
+            transform:  translateX(50%);
+        }
+        .footer {
+            position: fixed;
+            bottom: 30px;
+        }
+        .footer  button {
+            padding: 8px;
+            font-size: 20px;
+            margin: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div>
+            <img class="caithao" src="./caithao.jpg" alt="">
+            <img class="caidia  " src="./caidia.jpg" alt="">
+            <div class="kq">
+                <img src="bau.jpg" alt="" class="img">
+                <img src="bau.jpg" alt="" class="img">
+                <img src="bau.jpg" alt="" class="img">
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class="footer">
+        <button class="btnday">
+            Đậy nắp
+        </button>
+        <button class="btnlac">
+            lắc
+        </button>
+        <button class="btnmo">
+            Mở nắp
+        </button>
+    </div>
+    <script>
+        var listimg = [
+            "bau.jpg",
+            "./ca.jpg",
+            "./connai.jpg",
+            "./cua.jpg",
+            "./ga.jpg",
+            "./tom.jpg"
+        ]
+        var img = document.querySelectorAll(".img")
+        var btnlac = document.querySelector(".btnlac")
+        var caidia = document.querySelector(".caidia")
+        var btnmo = document.querySelector(".btnmo")
+        var btnday = document.querySelector(".btnday")
+        btnlac.addEventListener("click", function() {
+            
+                img.forEach( item => {
+                var num = Math.floor(Math.random() * 6)
+                item.src = listimg[num]
+                })
+            
+            
+            
+            
+        })
+        btnmo.addEventListener('click' , function() {
+            caidia.classList.remove("fadeout")
+            caidia.classList.add("fadein")
+            
+        })
+        btnday.addEventListener("click", function() {
+            caidia.classList.remove("fadein")
+            caidia.classList.add("fadeout")
+            
+            setTimeout(function() {
+                img.forEach( item => {
+                var num = Math.floor(Math.random() * 6)
+                item.src = listimg[num]
+                    })
+            },2000)
+            
+        })
+    </script>
+</body>
+</html>
